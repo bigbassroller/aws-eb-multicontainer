@@ -26,7 +26,7 @@ To use:
   - Reuse the same CodeBuild project
   - After creating and initiating Pipelines for each, the last deploy should succeed.
 7. Go to `Route 53` and create a hosted zone.
-8. Update domain register Nameservers to point to the Route 53 hosted zone (progation can take up to two days).
+8. Update domain register Nameservers to point to the Route 53 hosted zone (propagation can take up to two days).
 9. Go `Route 53` hosted zone and create an `A Record` with value `example.com` that points to an Alias of the Elasticbeanstalk environment you created in step 1.
 10. Add `A Records` for `app.example.com` and `backend.example.com`, putting each to the same Elasticbeanstalk Alias
 11. Create ACM certificate
