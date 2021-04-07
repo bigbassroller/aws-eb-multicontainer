@@ -29,7 +29,7 @@ To use:
 8. Update domain register Nameservers to point to the Route 53 hosted zone (propagation can take up to two days).
 9. Go `Route 53` hosted zone and create an `A Record` with value `example.com` that points to an Alias of the Elasticbeanstalk environment you created in step 1.
 10. Add `A Records` for `app.example.com` and `backend.example.com`, pointing each to the same Elasticbeanstalk Alias
-11. Create ACM certificate
+11. Create ACM certificate for `example.com` with alt names for `app.example.com` and `backend.example.com`.
 12. Go to EC2 > Load Balancers
   - Add Listener for `https` on port `443`
   - Associate the SSL created in prior step
