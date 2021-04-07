@@ -4,7 +4,7 @@ Amazon Web Services (AWS) Elasticbeanstalk  (EB) Multi-container
 
 To use:
 
-1. Create an ElasticBeanstalk environment with Docker Multi Container options.
+1. Create an ElasticBeanstalk environment with Docker Multi Container option.
 2. Upload `site-artifacts` to S3
 3. Create CodeCommit repositories for your applications
 4. Add the CodeCommit repositories as the git remote origin for each application and `git push origin main` to each. Be sure to include the `buildspec.yml` in the repo.
