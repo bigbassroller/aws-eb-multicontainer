@@ -1,0 +1,107 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "volumes": [
+    {
+      "name": "nginx-proxy-conf",
+      "host": {
+        "sourcePath": "/var/app/current/proxy/conf.d"
+      }
+    }
+  ],
+  "containerDefinitions": [
+    {
+      "name": "example-com",
+      "image": "000000000000.dkr.ecr.us-west-2.amazonaws.com/example-com:latest",
+      "essential": true,
+      "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 8081,
+          "containerPort": 8081
+        }
+      ],
+      "environment": [
+        {
+          "name": "PORT",
+          "value": "8081"
+        },
+        {
+          "name": "HOST",
+          "value": "example.com"
+        }
+      ]
+    },
+    {
+      "name": "app-example-com",
+      "image": "000000000000.dkr.ecr.us-west-2.amazonaws.com/app-example-com:latest",
+      "essential": true,
+      "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 8082,
+          "containerPort": 8082
+        }
+      ],
+      "environment": [
+        {
+          "name": "PORT",
+          "value": "8082"
+        },
+        {
+          "name": "HOST",
+          "value": "app.example.com"
+        }
+      ]
+    },
+    {
+      "name": "backend-example-com",
+      "image": "000000000000.dkr.ecr.us-west-2.amazonaws.com/backend-example-com:latest",
+      "essential": true,
+      "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 8083,
+          "containerPort": 8083
+        }
+      ],
+      "environment": [
+        {
+          "name": "PORT",
+          "value": "8083"
+        },
+        {
+          "name": "HOST",
+          "value": "backend.example.com"
+        }
+      ]
+    },
+    {
+      "name": "nginx-proxy",
+      "image": "nginx",
+      "essential": true,
+      "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": [
+        "example-com",
+        "app-example-com",
+        "backend-example-com"
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "awseb-logs-nginx-proxy",
+          "containerPath": "/var/log/nginx"
+        },
+        {
+          "sourceVolume": "nginx-proxy-conf",
+          "containerPath": "/etc/nginx/conf.d",
+          "readOnly": true
+        }
+      ]
+    }
+  ]
+}
