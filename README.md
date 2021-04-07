@@ -10,13 +10,13 @@ To use:
 4. Add the CodeCommit repositories as the git remote origin for each application and `git push origin main` to each. Be sure to include the `buildspec.yml` in the repo.
 4. Create ECR repositories for your applications
 5. Create CodePipeline for `example-com`
-  - Ensure `CodePipelineServiceRole` has (requires going to IAM adding):
+  - Ensure `CodePipelineServiceRole` has (requires going to IAM):
     - AmazonEC2ContainerRegistryPowerUser
     - AmazonS3FullAccess
   - Create CodeBuild Project (this will be used in other CodePipelines, so give it a universal name like `example-builder`)
     - Ensure checkbox for Docker privledges are checked
     - Be sure to add the needed environment variables to build project
-    - Ensure `CodeBuildServiceRole` has (requires going to IAM adding):
+    - Ensure `CodeBuildServiceRole` has (requires going to IAM):
       - AmazonEC2ContainerRegistryPowerUser
       - AmazonS3FullAccess 
   - Deploy the environment to the Elasticbeanstalk environment created in first step
